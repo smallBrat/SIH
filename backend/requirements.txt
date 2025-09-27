@@ -9,7 +9,7 @@ opencv-python-headless==4.7.0.72
 scikit-image==0.19.3
 matplotlib==3.6.3
 
-# YOLO and PyTorch - CPU versions for faster deployment  
-torch==1.13.1+cpu --index-url https://download.pytorch.org/whl/cpu
-torchvision==0.14.1+cpu --index-url https://download.pytorch.org/whl/cpu
+# YOLO and PyTorch - standard versions (CPU compatible)
+torch==1.13.1
+torchvision==0.14.1
 ultralytics==8.0.120
