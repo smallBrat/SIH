@@ -1,13 +1,11 @@
 from src.preprocessing import preprocess_image, ensure_same_size
 from src.segmentation import detect_non_pit_actors, create_clean_segmentation_mask, create_binary_pit_mask, create_enhanced_pit_only_mask, create_pit_area_mask_for_changes
 from src.change_detection import (detect_changes_with_dilation, remove_segmented_from_changes, 
-                                create_color_coded_superposition, analyze_changes, filter_changes_to_pit_only,
-                                create_enhanced_composite_overlay)
+                                create_color_coded_superposition, analyze_changes, filter_changes_to_pit_only)
 from src.alert_system import log_alert, show_alert
 import shutil
 import os
 import cv2
-import numpy as np
 from PIL import Image
 
 # Ensure output directories exist
@@ -95,50 +93,31 @@ def run_pipeline():
         # Fallback to visual result if other options not available
         shutil.copy(binary_mask_result["visual_result"], segmentation_display)
 
-    # STAGE 5: Enhanced Composite Overlay - Thermal Changes + Pit Masking
-    print("🎨 Stage 5: Creating enhanced composite overlay (Stage 3 + Stage 4)...")
+    # STAGE 5: Pit-Only Visualization Phase - Color-coded Superposition
+    print("🎨 Stage 5: Creating pit-only color-coded visualization...")
+    visualization_result = None
+    if pit_only_filtered_result:
+        visualization_result = create_color_coded_superposition(
+            baseline_final, 
+            new_final, 
+            pit_only_filtered_result["pit_only_mask"], 
+            "outputs/stage5"
+        )
     
-    # Collect comprehensive data from previous stages
-    stage3_data = {
-        "changes_result": changes_result,
-        "thermal_path": changes_result.get("thermal_enhanced") if changes_result else None,
-        "changes_colored": changes_result.get("changes_colored") if changes_result else None,
-        "thermal_intensity": changes_result.get("thermal_intensity") if changes_result else None
-    }
-    
-    stage4_data = {
-        "enhanced_pit_result": enhanced_pit_result,
-        "binary_mask_result": binary_mask_result,
-        "pit_mask": enhanced_pit_result.get("pit_mask") if enhanced_pit_result else None,
-        "actor_mask": binary_mask_result.get("mask") if binary_mask_result else None
-    }
-    
-    # Create enhanced composite overlay combining Stage 3 thermal + Stage 4 pit masking
-    visualization_result = create_enhanced_composite_overlay(
-        baseline_final, 
-        new_final,
-        stage3_data,
-        stage4_data,
-        "outputs/stage5"
-    )
-    
-    # Copy enhanced visualizations
+    # Copy final visualizations (both standard and high contrast)
     visualization_display = "outputs/stage5_visualization.png"
     high_contrast_display = "outputs/stage5_high_contrast.png"
     
     if visualization_result:
-        if visualization_result.get("composite_overlay"):
-            shutil.copy(visualization_result["composite_overlay"], visualization_display)
-        if visualization_result.get("high_contrast_overlay"):
-            shutil.copy(visualization_result["high_contrast_overlay"], high_contrast_display)
-        
-        print(f"✅ Stage 5: Enhanced composite overlay created with {visualization_result.get('overlay_quality', 'N/A')} quality")
+        if visualization_result.get("visualization"):
+            shutil.copy(visualization_result["visualization"], visualization_display)
+        if visualization_result.get("high_contrast_visualization"):
+            shutil.copy(visualization_result["high_contrast_visualization"], high_contrast_display)
     else:
         # Create fallback visualization if main visualization fails
         fallback_vis = create_fallback_visualization(baseline_final, new_final, "outputs/stage5")
         if fallback_vis:
             shutil.copy(fallback_vis, visualization_display)
-            print("⚠️  Stage 5: Using fallback visualization")
 
     # Enhanced Analysis with Risk Scoring (Pit-Only Focus)
     print("📊 Analyzing pit-only changes with enhanced risk assessment...")

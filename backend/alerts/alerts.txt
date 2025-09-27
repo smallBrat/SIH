@@ -8,3 +8,976 @@
 [2025-09-18 08:22:02.347592] SSIM=0.222, ORB=133.000, ALERT=YES
 [2025-09-18 08:31:27.314152] SSIM=0.222, ORB=133.000, ALERT=YES
 [2025-09-18 08:46:27.111096] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 09:01:24.951927] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 09:03:48.954924] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 09:41:07.025602] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 09:41:23.140093] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 09:43:06.605663] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 09:48:18.796227] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 09:59:06.722287] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 10:10:37.805380] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 10:27:00.137289] SSIM=0.222, ORB=133.000, ALERT=YES
+[2025-09-18 10:35:24.083867] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 10:35:24.105234] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 11:23:29.541489] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 11:44:44.239835] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 11:50:43.903274] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 12:05:44.113278] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 12:09:17.779197] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 12:16:10.765842] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 12:16:52.712948] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 12:17:49.309563] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 14:43:56.322150] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 14:49:13.044930] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 14:56:52.378195] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 15:05:32.823449] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 18:46:15.991097] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-18 18:46:17.078236] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-26 17:40:03.797567] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-26 17:55:05.285259] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-26 19:05:53.084307] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-26 19:06:31.064589] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-26 19:09:33.359515] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-26 19:42:20.229116] SSIM=0.284, ORB=208.000, ALERT=YES
+[2025-09-26 19:57:52.113217] SSIM=0.329, ORB=184.000, ALERT=YES
+[2025-09-26 19:58:46.737696] SSIM=0.329, ORB=184.000, ALERT=YES
+[2025-09-26 19:59:36.272464] SSIM=0.329, ORB=184.000, ALERT=YES
+[2025-09-26 19:59:39.937388] SSIM=0.329, ORB=184.000, ALERT=YES
+[2025-09-26 20:13:14.945697] SSIM=0.936, ORB=287.000, ALERT=NO
+[2025-09-26 20:25:42.814815] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+[2025-09-26 20:25:56.038027] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+[2025-09-26 20:26:44.771166] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.3/100): Minor changes detected!
+
+[2025-09-26 20:30:17.093135] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.3/100): Minor changes detected!
+
+[2025-09-26 20:37:18.961108] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.3/100): Minor changes detected!
+
+[2025-09-26 20:39:06.066184] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.3/100): Minor changes detected!
+
+[2025-09-26 20:40:17.259626] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.3/100): Minor changes detected!
+
+[2025-09-26 20:43:21.750046] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.3/100): Minor changes detected!
+
+[2025-09-26 20:52:27.477343] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.3/100): Minor changes detected!
+
+[2025-09-26 20:56:05.944127] Enhanced Alert Log
+   SSIM: 0.936
+   ORB: 586
+   Change%: 6.87%
+   Risk Score: 17.3/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 3.9/60, Change%: 3.4/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.3/100): Minor changes detected!
+
+[2025-09-26 20:59:29.518125] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:00:27.816601] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:01:49.898158] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:03:46.627903] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:04:04.716444] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:04:12.445760] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:04:27.832807] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:04:37.460850] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:04:59.107421] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:06:29.880137] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:06:39.909558] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:06:45.802670] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:07:13.729731] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:08:53.175725] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:09:10.101170] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:09:18.275445] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:10:27.281026] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:12:29.983459] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:12:38.422701] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:12:53.831874] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:13:16.702464] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:13:25.635782] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:13:49.726492] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:15:30.948759] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:15:36.935187] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:15:43.937630] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:15:51.915862] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:15:56.898863] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:16:03.076110] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:16:11.034517] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:17:01.775284] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:18:26.896663] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:18:44.908248] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:19:01.718465] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:20:01.788425] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:21:04.237552] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:21:29.743928] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:22:21.785202] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:22:40.431276] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:22:52.417141] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:23:22.809259] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:23:48.431492] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:28:34.888084] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:28:38.735228] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:29:12.002143] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:32:31.495840] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 21:33:05.169211] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 22:24:03.476859] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 22:24:05.647221] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 22:40:13.398392] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 22:51:36.080063] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 22:53:35.582858] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 22:53:52.622154] Enhanced Alert Log
+   SSIM: 0.931
+   ORB: 583
+   Change%: 7.18%
+   Risk Score: 17.7/100
+   Risk Level: LOW
+   Alert: YES
+   Factors: SSIM: 4.1/60, Change%: 3.6/15, Intensity: 10.0/10
+   Message: LOW RISK LOW RISK (17.7/100): Minor changes detected!
+
+[2025-09-26 22:59:52.510584] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-26 23:14:54.580046] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-26 23:16:36.672873] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: NO
+   Factors: 
+   Message: No message
+
+[2025-09-26 23:16:47.460952] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: NO
+   Factors: 
+   Message: No message
+
+[2025-09-26 23:26:11.466695] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-26 23:27:12.293026] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: NO
+   Factors: 
+   Message: No message
+
+[2025-09-26 23:27:36.935366] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-26 23:32:28.575928] SSIM=0.938, ORB=655.000, ALERT=NO
+[2025-09-27 08:32:21.157184] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:37:44.525637] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:38:23.599351] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:43:43.077506] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:47:18.436567] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:48:36.277700] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:49:10.372834] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:54:48.531055] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:55:05.201913] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:55:59.825525] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:56:35.467491] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:57:03.326188] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:57:15.413854] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:58:53.493601] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:59:28.463748] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 08:59:35.264119] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 09:00:03.316327] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 09:05:27.532160] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 09:05:38.409005] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 09:06:46.314209] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 09:06:59.021516] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 09:07:12.561878] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 09:07:44.410006] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+
+[2025-09-27 09:09:27.798385] Enhanced Alert Log
+   SSIM: 0.000
+   ORB: 0
+   Change%: 0.00%
+   Risk Score: 0.0/100
+   Risk Level: UNKNOWN
+   Alert: YES
+   Factors: 
+   Message: No message
+

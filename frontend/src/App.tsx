@@ -16,35 +16,34 @@ type PipelineStage = {
 
 type AlertStatus = {
   isStable: boolean;
-  confidence: number;
   lastUpdated: string;
 };
 
 const STAGE_META: Omit<PipelineStage, "imageUrl">[] = [
   {
-    id: "baseline",
-    title: "Baseline Image",
-    description: "Initial reference image captured during setup",
+    id: "stage1",
+    title: "Stage 1: Baseline Image",
+    description: "Enhanced preprocessing with noise reduction and contrast enhancement",
   },
   {
-    id: "new",
-    title: "New Image",
-    description: "Latest captured image for comparison",
+    id: "stage2",
+    title: "Stage 2: New Captured Image", 
+    description: "Latest image with same preprocessing and size normalization",
   },
   {
-    id: "masked",
-    title: "Masked Image",
-    description: "Image after preprocessing and masking applied",
+    id: "stage3", 
+    title: "Stage 3: Size-Preserved Pit Detection",
+    description: "Accurate change detection preserving original change sizes - eliminates false positives while maintaining true change dimensions",
   },
   {
-    id: "segmented",
-    title: "Segmented Image",
-    description: "Image after removing non-pit objects",
+    id: "stage4",
+    title: "Stage 4: Enhanced Pit Area Detection",
+    description: "YOLO segmentation creates precise pit-only mask, isolating pure mining area from all non-pit actors",
   },
   {
-    id: "diff",
-    title: "Change Detection Result",
-    description: "Difference map highlighting changes",
+    id: "stage5",
+    title: "Stage 5: Pit-Only Visualization",
+    description: "Color-coded superposition showing rockfall changes ONLY in pit areas, excluding all non-pit actors",
   },
 ];
 
@@ -89,8 +88,16 @@ export default function App() {
       // Compose alertStatus
       const alert: AlertStatus = {
         isStable: !result.alert,
-        confidence: Math.round((result.ssim_score ?? 0) * 100),
-        lastUpdated: new Date().toISOString().slice(0, 19).replace("T", " "),
+        lastUpdated: new Date().toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          year: "numeric",
+          month: "2-digit", 
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false
+        }).replace(/(\d{2})\/(\d{2})\/(\d{4}), (\d{2}:\d{2}:\d{2})/, "$3-$2-$1 $4"),
       };
       setAlertStatus(alert);
 
@@ -122,45 +129,29 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50 p-4">
+      <div className="max-w-full mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl mb-2">AI-Based Rockfall Prediction Demo</h1>
+          <h1 className="text-3xl mb-2">AI-Based Rockfall Prediction</h1>
           <p className="text-muted-foreground">Real-time geological monitoring and change detection system</p>
         </div>
 
         {/* Image Processing Pipeline */}
-        <div className="mb-8">
-          <h2 className="text-xl mb-6 text-center">Image Processing Pipeline</h2>
-          <div className="flex items-center justify-center gap-4 overflow-x-auto pb-4">
+        <div className="mb-6">
+          <h2 className="text-xl mb-4 text-center">5-Stage Rockfall Detection Pipeline</h2>
+          <div className="flex items-center justify-center gap-4 pb-4 px-2">
             {pipelineStages.map((stage, index) => (
-              <div key={stage.id} className="flex items-center gap-4">
-                {/* Stage Card */}
-                <div className="flex-shrink-0">
-                  <Card className="w-48 shadow-lg border-0 bg-white">
-                    <CardContent className="p-4">
-                      <div className="aspect-square w-full mb-3 rounded-lg overflow-hidden bg-gray-100">
-                        <ImageWithFallback
-                          src={stage.imageUrl}
-                          alt={stage.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="text-center">
-                        <h3 className="text-sm mb-1">{stage.title}</h3>
-                        <p className="text-xs text-muted-foreground leading-tight">
-                          {stage.description}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
+              <div key={index} className="flex-1 max-w-xs">
+                <div className="bg-white rounded-lg shadow-lg p-3 h-auto border border-gray-200">
+                  <ImageWithFallback
+                    src={stage.imageUrl}
+                    alt={stage.title}
+                    className="w-full h-40 object-contain rounded mb-2"
+                  />
+                  <h3 className="text-sm font-semibold text-center mb-1 line-clamp-1">{stage.title}</h3>
+                  <p className="text-xs text-gray-600 text-center line-clamp-2">{stage.description}</p>
                 </div>
-
-                {/* Arrow (if not last item) */}
-                {index < pipelineStages.length - 1 && (
-                  <ChevronRight className="text-gray-400 flex-shrink-0" size={24} />
-                )}
               </div>
             ))}
           </div>
@@ -194,12 +185,6 @@ export default function App() {
                 )}
               </div>
               <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Confidence:</span>
-                  <Badge variant={alertStatus.isStable ? "secondary" : "destructive"}>
-                    {alertStatus.confidence}%
-                  </Badge>
-                </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Last Updated:</span>
                   <span className="text-sm">{alertStatus.lastUpdated}</span>
