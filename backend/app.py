@@ -79,19 +79,6 @@ def convert_numpy_types(obj):
     else:
         return obj
 
-@app.get("/health")
-def health_check():
-    """Simple health check endpoint"""
-    return jsonify({
-        "status": "healthy",
-        "message": "Rockfall Detection API is running",
-        "timestamp": os.times(),
-        "directories": {
-            "outputs": os.path.exists("outputs"),
-            "data": os.path.exists("data"),
-            "models": os.path.exists("models")
-        }
-    })
 
 @app.get("/status")
 def status():
