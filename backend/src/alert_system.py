@@ -4,8 +4,12 @@ from datetime import datetime
 def log_alert(result, log_file="alerts/alerts.txt"):
     os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
+    # Get data from the new structure
+    risk_assessment = result.get('risk_assessment', {})
+    detection_stats = result.get('detection_stats', {})
+    
     # Remove emojis from alert message for file logging
-    alert_message = result.get('alert_message', 'No message')
+    alert_message = result.get('message', 'No message')
     # Simple emoji removal - replace common emojis with text
     alert_message_clean = (alert_message
                           .replace('🚨', 'CRITICAL RISK')
@@ -17,38 +21,45 @@ def log_alert(result, log_file="alerts/alerts.txt"):
 
     with open(log_file, "a", encoding='utf-8') as f:
         f.write(f"[{datetime.now()}] Enhanced Alert Log\n")
-        f.write(f"   SSIM: {result.get('ssim_score', 0):.3f}\n")
-        f.write(f"   ORB: {result.get('orb_score', 0):.0f}\n") 
-        f.write(f"   Change%: {result.get('change_percentage', 0):.2f}%\n")
-        f.write(f"   Risk Score: {result.get('risk_score', 0):.1f}/100\n")
-        f.write(f"   Risk Level: {result.get('risk_level', 'UNKNOWN')}\n")
+        f.write(f"   Risk Score: {risk_assessment.get('risk_score', 0):.1f}/100\n")
+        f.write(f"   Risk Level: {risk_assessment.get('risk_level', 'UNKNOWN')}\n")
+        f.write(f"   Change%: {risk_assessment.get('change_percentage', 0):.2f}%\n")
+        f.write(f"   High Intensity: {detection_stats.get('high_intensity_changes', 0)} pixels\n")
         f.write(f"   Alert: {'YES' if result.get('alert', False) else 'NO'}\n")
-        f.write(f"   Factors: {', '.join(result.get('risk_factors', []))}\n")
+        f.write(f"   Processing: {'SUCCESS' if result.get('processing_successful', False) else 'ISSUES'}\n")
         f.write(f"   Message: {alert_message_clean}\n\n")
 
 def show_alert(result):
     """Enhanced alert display with risk levels and detailed messaging"""
     
     # Display the alert message with appropriate formatting
-    alert_message = result.get("alert_message", "Unknown status")
+    alert_message = result.get("message", "Unknown status")
     print(alert_message)
     
+    # Get risk assessment data from the new structure
+    risk_assessment = result.get("risk_assessment", {})
+    detection_stats = result.get("detection_stats", {})
+    
     # Additional details for operators
-    risk_score = result.get("risk_score", 0)
-    risk_level = result.get("risk_level", "UNKNOWN")
-    change_percentage = result.get("change_percentage", 0)
+    risk_score = risk_assessment.get("risk_score", 0)
+    risk_level = risk_assessment.get("risk_level", "UNKNOWN")
+    change_percentage = risk_assessment.get("change_percentage", 0)
     
     print(f"📈 Detection Details:")
     print(f"   • Risk Score: {risk_score:.1f}/100")
     print(f"   • Risk Level: {risk_level}")
     print(f"   • Change Area: {change_percentage:.2f}% of image")
-    print(f"   • SSIM Score: {result.get('ssim_score', 0):.3f}")
-    print(f"   • ORB Matches: {result.get('orb_score', 0):.0f}")
+    print(f"   • High Intensity Changes: {detection_stats.get('high_intensity_changes', 0)} pixels")
+    print(f"   • Total Changes: {detection_stats.get('total_changes', 0):.2f}%")
     
-    # Show risk factors if available
-    risk_factors = result.get("risk_factors", [])
-    if risk_factors:
-        print(f"   • Risk Factors: {', '.join(risk_factors)}")
+    # Show processing status
+    processing_successful = result.get("processing_successful", False)
+    print(f"   • Processing Status: {'✅ Success' if processing_successful else '❌ Issues detected'}")
+    
+    # Show confidence if available
+    confidence = risk_assessment.get("confidence", 0)
+    if confidence > 0:
+        print(f"   • Confidence Level: {confidence:.1f}%")
     
     # Recommendations based on risk level
     if risk_level == "CRITICAL":
