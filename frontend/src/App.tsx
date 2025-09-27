@@ -20,24 +20,71 @@ const PIT_CONFIG = {
   imageEndpoint: "stage5" // Backend processes all stages, frontend shows final result
 };
 
-const API_BASE_URL = "https://rockfall-prediction-tt4l.onrender.com";
+// API Configuration with fallback
+const API_ENDPOINTS = {
+  live: "https://rockfall-prediction-tt4l.onrender.com",
+  local: "http://127.0.0.1:5000",
+  localhost: "http://localhost:5000"
+};
+
+// Try endpoints in order of preference
+const getWorkingAPI = async (): Promise<string> => {
+  const endpoints = [API_ENDPOINTS.live, API_ENDPOINTS.local, API_ENDPOINTS.localhost];
+  
+  for (const endpoint of endpoints) {
+    try {
+      // Use root endpoint for health check since it's more reliable
+      const response = await axios.get(`${endpoint}/`, { timeout: 8000 });
+      if (response.status === 200 && response.data) {
+        console.log(`✅ Using API: ${endpoint}`);
+        return endpoint;
+      }
+    } catch (error: any) {
+      console.warn(`❌ API ${endpoint} not available:`, error?.message || error);
+    }
+  }
+  
+  console.warn('⚠️ All APIs failed, entering demo mode');
+  throw new Error('All API endpoints unavailable');
+};
 
 export default function App() {
   const [pitImage, setPitImage] = useState<string>("");
   const [alertStatus, setAlertStatus] = useState<AlertStatus | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [demoMode, setDemoMode] = useState(false);
+  const [apiStatus, setApiStatus] = useState<string>('');
 
-  const fetchPitImage = async (): Promise<string> => {
+  // Test API connectivity
+  const testAPI = async () => {
+    setApiStatus('Testing APIs...');
+    const endpoints = [API_ENDPOINTS.live, API_ENDPOINTS.local, API_ENDPOINTS.localhost];
+    
+    for (const endpoint of endpoints) {
+      try {
+        const response = await axios.get(`${endpoint}/`, { timeout: 5000 });
+        if (response.status === 200) {
+          setApiStatus(`✅ ${endpoint} - Working`);
+          return;
+        }
+      } catch (error: any) {
+        setApiStatus(`❌ ${endpoint} - Failed: ${error.message}`);
+      }
+    }
+    setApiStatus('❌ All APIs failed');
+  };
+
+  const fetchPitImage = async (apiUrl: string): Promise<string> => {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/image/${PIT_CONFIG.imageEndpoint}`,
-        { responseType: "blob", timeout: 10000 }
+        `${apiUrl}/image/${PIT_CONFIG.imageEndpoint}`,
+        { responseType: "blob", timeout: 15000 }
       );
       const imageUrl = URL.createObjectURL(response.data);
       return imageUrl;
     } catch (error) {
-      console.warn(`Failed to fetch pit image:`, error);
+      console.warn(`Failed to fetch pit image from ${apiUrl}:`, error);
       return "";
     }
   };
@@ -46,17 +93,32 @@ export default function App() {
   const fetchPipeline = async () => {
     setLoading(true);
     setError(null);
+    setDemoMode(false);
+    
     try {
-      // Trigger the pipeline processing
-      const response = await axios.post(`${API_BASE_URL}/run-pipeline`, {}, {
-        timeout: 30000
-      });
+      // Get working API endpoint  
+      const workingAPI = await getWorkingAPI();
+      console.log(`🔄 Using API: ${workingAPI}`);
       
-      if (!response.data.success) {
-        throw new Error(response.data.error || "Pipeline failed");
+      // Try to trigger the pipeline processing
+      let pipelineSuccess = false;
+      try {
+        const response = await axios.post(`${workingAPI}/run-pipeline`, {}, {
+          timeout: 20000, // Reduced timeout for faster feedback
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        
+        if (response.data.success) {
+          pipelineSuccess = true;
+          console.log('✅ Pipeline processing successful');
+        }
+      } catch (pipelineError: any) {
+        console.warn('⚠️ Pipeline processing failed, will try to get existing images:', pipelineError.message);
       }
 
-      // Mock alert status based on pipeline results
+      // Generate alert status
       const alert: AlertStatus = {
         isStable: Math.random() > 0.3, // 70% chance of stable
         lastUpdated: new Date().toLocaleString("en-IN", {
@@ -72,11 +134,42 @@ export default function App() {
       };
       setAlertStatus(alert);
 
-      // Fetch the composite pit visualization
-      const pitImageUrl = await fetchPitImage();
+      // Try to fetch the composite pit visualization
+      const pitImageUrl = await fetchPitImage(workingAPI);
       setPitImage(pitImageUrl);
+      
+      if (!pipelineSuccess && !pitImageUrl) {
+        throw new Error('Both pipeline and image fetch failed');
+      }
     } catch (err: any) {
-      setError(err.message || "Failed to fetch pipeline data");
+      console.error('Pipeline fetch failed:', err);
+      // Activate demo mode if all APIs fail
+      if (err.message?.includes('Network Error') || err.code === 'ECONNREFUSED') {
+        setDemoMode(true);
+        setAlertStatus({
+          isStable: Math.random() > 0.5,
+          lastUpdated: new Date().toLocaleString("en-IN", {
+            timeZone: "Asia/Kolkata",
+            year: "numeric",
+            month: "2-digit", 
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+          }).replace(/(\d{2})\/(\d{2})\/(\d{4}), (\d{2}:\d{2}:\d{2})/, "$3-$2-$1 $4")
+        });
+        setPitImage('data:image/svg+xml;base64,' + btoa(`
+          <svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="#f3f4f6"/>
+            <text x="50%" y="45%" text-anchor="middle" font-family="Arial" font-size="24" fill="#6b7280">Demo Mode</text>
+            <text x="50%" y="55%" text-anchor="middle" font-family="Arial" font-size="16" fill="#9ca3af">API endpoints unavailable - showing demo interface</text>
+          </svg>
+        `));
+        setError(null);
+      } else {
+        setError(err.message || "Failed to fetch pipeline data");
+      }
     } finally {
       setLoading(false);
     }
@@ -140,8 +233,8 @@ export default function App() {
                     <h2 className="text-xl font-bold">{PIT_CONFIG.name}</h2>
                     <p className="text-blue-100 text-sm">{PIT_CONFIG.title}</p>
                   </div>
-                  <Badge variant="secondary" className="bg-blue-500 text-white">
-                    Live Monitoring
+                  <Badge variant="secondary" className={demoMode ? "bg-orange-500 text-white" : "bg-blue-500 text-white"}>
+                    {demoMode ? 'Demo Mode' : 'Live Monitoring'}
                   </Badge>
                 </div>
               </div>
@@ -202,24 +295,45 @@ export default function App() {
 
         {/* System Info */}
         <div className="mt-8 text-center text-sm text-muted-foreground">
-          <p>System Status: Active • Monitoring Interval: 15 minutes • Next Scan: {
+          <p>{demoMode ? 'Demo Mode: API Unavailable' : 'System Status: Active'} • Monitoring Interval: 15 minutes • Next Scan: {
             new Date(Date.now() + 15 * 60 * 1000).toLocaleTimeString('en-IN', {
               timeZone: 'Asia/Kolkata',
               hour: '2-digit',
               minute: '2-digit'
             })
           }</p>
+          {demoMode && (
+            <p className="mt-2 text-orange-600">⚠️ Unable to connect to API servers. Displaying demo interface.</p>
+          )}
         </div>
 
-        {/* Refresh Button */}
-        <div className="mt-6 text-center">
-          <button 
-            onClick={fetchPipeline}
-            disabled={loading}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? 'Processing...' : 'Refresh Analysis'}
-          </button>
+        {/* API Status & Controls */}
+        <div className="mt-6 text-center space-y-4">
+          {/* API Status */}
+          {apiStatus && (
+            <div className="text-sm text-gray-600 bg-gray-100 p-2 rounded">
+              API Status: {apiStatus}
+            </div>
+          )}
+          
+          {/* Control Buttons */}
+          <div className="flex justify-center gap-4">
+            <button 
+              onClick={fetchPipeline}
+              disabled={loading}
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Processing...' : 'Refresh Analysis'}
+            </button>
+            
+            <button 
+              onClick={testAPI}
+              disabled={loading}
+              className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Test APIs
+            </button>
+          </div>
         </div>
       </div>
     </div>
