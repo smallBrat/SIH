@@ -5,11 +5,11 @@ numpy==1.21.6
 Pillow==9.5.0
 
 # Computer Vision - lightweight versions
-opencv-python-headless==4.7.1.72
+opencv-python-headless==4.7.0.72
 scikit-image==0.19.3
 matplotlib==3.6.3
 
-# YOLO and PyTorch - CPU versions for faster deployment
+# YOLO and PyTorch - CPU versions for faster deployment  
 torch==1.13.1+cpu --index-url https://download.pytorch.org/whl/cpu
 torchvision==0.14.1+cpu --index-url https://download.pytorch.org/whl/cpu
 ultralytics==8.0.120
