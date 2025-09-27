@@ -2,6 +2,7 @@ from flask import Flask, jsonify, send_file
 from flask_cors import CORS
 import os
 import sys
+from datetime import datetime
 
 # Set environment variables to prevent torch/YOLO from causing Flask reloads
 os.environ['YOLO_VERBOSE'] = 'False'
@@ -25,6 +26,40 @@ for dir_path in required_dirs:
     os.makedirs(dir_path, exist_ok=True)
 
 print("🏗️  Required directories verified")
+
+
+@app.route('/')
+def home():
+    """Root endpoint with API documentation"""
+    return jsonify({
+        "message": "🎯 Rockfall Detection API",
+        "status": "✅ Live and Ready",
+        "version": "1.0.0",
+        "endpoints": {
+            "/run-pipeline": "POST - Run complete 5-stage rockfall detection",
+            "/image/<stage>": "GET - Retrieve processed images (stage1-stage5)",
+            "/health": "GET - Health check endpoint"
+        },
+        "stages": {
+            "stage1": "Preprocessed images",
+            "stage2": "Temporal analysis", 
+            "stage3": "Thermal change detection",
+            "stage4": "Pit masking (precise boundaries)",
+            "stage5": "Composite overlay visualization"
+        },
+        "deployment": "Render Cloud Platform",
+        "docs": "Visit GitHub: smallBrat/SIH for documentation"
+    })
+
+
+@app.route('/health')
+def health_check():
+    """Health check endpoint"""
+    return jsonify({
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "service": "Rockfall Detection API"
+    }), 200
 
 
 def convert_numpy_types(obj):
