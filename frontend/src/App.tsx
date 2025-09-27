@@ -21,15 +21,15 @@ const PIT_CONFIG = {
 };
 
 // API Configuration with fallback
-const API_ENDPOINTS = {
-  live: "https://rockfall-prediction-tt4l.onrender.com",
-  local: "http://127.0.0.1:5000",
-  localhost: "http://localhost:5000"
-};
+const API_URLS = [
+  "http://localhost:5000", // Primary: Local development
+  "http://127.0.0.1:5000", // Secondary: Local IP
+  "https://rockfall-prediction-tt4l.onrender.com" // Fallback: Live API
+];
 
 // Try endpoints in order of preference
 const getWorkingAPI = async (): Promise<string> => {
-  const endpoints = [API_ENDPOINTS.live, API_ENDPOINTS.local, API_ENDPOINTS.localhost];
+  const endpoints = API_URLS;
   
   for (const endpoint of endpoints) {
     try {
@@ -57,22 +57,19 @@ export default function App() {
   const [apiStatus, setApiStatus] = useState<string>('');
 
   // Test API connectivity
-  const testAPI = async () => {
-    setApiStatus('Testing APIs...');
-    const endpoints = [API_ENDPOINTS.live, API_ENDPOINTS.local, API_ENDPOINTS.localhost];
-    
-    for (const endpoint of endpoints) {
-      try {
-        const response = await axios.get(`${endpoint}/`, { timeout: 5000 });
-        if (response.status === 200) {
-          setApiStatus(`✅ ${endpoint} - Working`);
-          return;
+    const testAPIEndpoint = async (baseUrl: string): Promise<boolean> => {
+    try {
+      const response = await axios.get(`${baseUrl}/`, { 
+        timeout: 5000,
+        headers: {
+          'Content-Type': 'application/json'
         }
-      } catch (error: any) {
-        setApiStatus(`❌ ${endpoint} - Failed: ${error.message}`);
-      }
+      });
+      return response.status === 200;
+    } catch (error) {
+      console.warn(`Failed to connect to ${baseUrl}:`, error);
+      return false;
     }
-    setApiStatus('❌ All APIs failed');
   };
 
   const fetchPitImage = async (apiUrl: string): Promise<string> => {
@@ -324,14 +321,6 @@ export default function App() {
               className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Processing...' : 'Refresh Analysis'}
-            </button>
-            
-            <button 
-              onClick={testAPI}
-              disabled={loading}
-              className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Test APIs
             </button>
           </div>
         </div>

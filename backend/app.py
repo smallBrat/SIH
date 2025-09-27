@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_file
+from flask import Flask, jsonify, send_file, request, make_response
 from flask_cors import CORS
 import os
 import sys
@@ -78,6 +78,50 @@ def convert_numpy_types(obj):
         return obj.tolist()
     else:
         return obj
+
+
+@app.route('/run-pipeline', methods=['POST', 'OPTIONS'])
+def run_pipeline_endpoint():
+    """POST endpoint to run the complete 5-stage rockfall detection pipeline"""
+    if request.method == 'OPTIONS':
+        # Handle CORS preflight request
+        response = make_response()
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        return response
+        
+    try:
+        import traceback
+        print("🚀 Flask: Starting pipeline via /run-pipeline endpoint...")
+        
+        # Set environment variables to prevent YOLO from causing reloads
+        os.environ['YOLO_VERBOSE'] = 'False'
+        
+        result = run_pipeline()
+        print("✅ Flask: Pipeline execution completed successfully")
+        
+        # Convert numpy types to JSON-serializable types
+        result_serializable = convert_numpy_types(result)
+        
+        return jsonify({"success": True, "result": result_serializable})
+    except Exception as e:
+        print(f"❌ Flask: Error in /run-pipeline: {e}")
+        traceback.print_exc()
+        
+        # More user-friendly error response
+        error_message = str(e)
+        if "YOLO" in error_message or "torch" in error_message:
+            error_message = "YOLO model loading issue. Please restart the server."
+        elif "OpenCV" in error_message:
+            error_message = "Image processing error. Check image files."
+            
+        return jsonify({
+            "success": False, 
+            "error": error_message,
+            "error_type": type(e).__name__,
+            "suggestion": "Try restarting the server if the issue persists"
+        }), 500
 
 
 @app.get("/status")
