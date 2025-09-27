@@ -143,7 +143,10 @@ def run_pipeline():
     # Enhanced Analysis with Risk Scoring (Pit-Only Focus)
     print("📊 Analyzing pit-only changes with enhanced risk assessment...")
     pit_filtered_mask = pit_only_filtered_result["pit_only_mask"] if pit_only_filtered_result else None
-    analysis_result = analyze_changes(baseline_final, new_final, pit_filtered_mask)
+    
+    # Pass thermal data from Stage 3 for accurate risk scoring
+    thermal_data = changes_result if changes_result else None
+    analysis_result = analyze_changes(baseline_final, new_final, pit_filtered_mask, thermal_data=thermal_data)
 
     # Enhanced Alert System with Risk Scoring
     print("🚨 Running enhanced alert system with risk scoring...")

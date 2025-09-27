@@ -772,13 +772,15 @@ def create_enhanced_composite_overlay(baseline_path, new_path, stage3_data, stag
         "summary": summary
     }
 
-def calculate_risk_score(ssim_score, orb_score, change_percentage, filtered_changes_mask=None):
+def calculate_risk_score(ssim_score, orb_score, change_percentage, filtered_changes_mask=None, thermal_intensity=0, severity_ratio=0):
     """
-    Calculate comprehensive risk score based on multiple factors
+    Calculate comprehensive risk score based on multiple factors including thermal data
     Returns score from 0-100 and risk level
     """
     risk_score = 0
     factors = []
+    
+    print(f"🎯 Risk Calculation: Change={change_percentage:.2f}%, Thermal={thermal_intensity:.1f}, Severity={severity_ratio:.2f}")
     
     # SSIM-based risk (lower SSIM = higher risk)
     if ssim_score < 0.95:  # Very sensitive threshold
@@ -792,11 +794,23 @@ def calculate_risk_score(ssim_score, orb_score, change_percentage, filtered_chan
         risk_score += orb_risk
         factors.append(f"ORB: {orb_risk:.1f}/25")
     
-    # Change percentage risk
-    if change_percentage > 1.0:  # Even 1% change is significant
-        change_risk = min(15, change_percentage * 0.5)  # Max 15 points from changes
+    # Change percentage risk (enhanced)
+    if change_percentage > 0.5:  # Very sensitive - 0.5% change is significant
+        change_risk = min(25, change_percentage * 4)  # Max 25 points from changes
         risk_score += change_risk
-        factors.append(f"Change%: {change_risk:.1f}/15")
+        factors.append(f"Change%: {change_risk:.1f}/25")
+    
+    # Thermal intensity risk (new)
+    if thermal_intensity > 50:  # Thermal intensity above 50 is concerning
+        thermal_risk = min(30, (thermal_intensity - 50) / 200 * 30)  # Max 30 points
+        risk_score += thermal_risk
+        factors.append(f"Thermal: {thermal_risk:.1f}/30")
+    
+    # Severity ratio risk (critical vs total changes)
+    if severity_ratio > 0.1:  # 10% of changes being critical is significant
+        severity_risk = min(20, severity_ratio * 20)  # Max 20 points
+        risk_score += severity_risk
+        factors.append(f"Severity: {severity_risk:.1f}/20")
     
     # Change intensity from filtered mask
     if filtered_changes_mask is not None:
@@ -809,52 +823,93 @@ def calculate_risk_score(ssim_score, orb_score, change_percentage, filtered_chan
             risk_score += intensity_risk
             factors.append(f"Intensity: {intensity_risk:.1f}/10")
     
-    # Determine risk level and alert status
-    if risk_score >= 70:
+    # Determine risk level and alert status (more sensitive thresholds)
+    if risk_score >= 60:
         risk_level = "CRITICAL"
         alert_status = True
-    elif risk_score >= 50:
+    elif risk_score >= 40:
         risk_level = "HIGH" 
         alert_status = True
-    elif risk_score >= 30:
+    elif risk_score >= 25:
         risk_level = "MODERATE"
         alert_status = True
-    elif risk_score >= 15:
+    elif risk_score >= 10:
         risk_level = "LOW"
         alert_status = True
     else:
         risk_level = "STABLE"
         alert_status = False
     
+    print(f"🎯 Final Risk Score: {risk_score:.1f}/100 - {risk_level} ({'ALERT' if alert_status else 'STABLE'})")
+    
     return {
         "risk_score": min(100, risk_score),  # Cap at 100
         "risk_level": risk_level,
         "alert_status": alert_status,
-        "risk_factors": factors
+        "risk_factors": factors,
+        "thermal_contribution": thermal_intensity,
+        "change_contribution": change_percentage,
+        "severity_contribution": severity_ratio
     }
 
-def analyze_changes(img1_path, img2_path, filtered_changes_mask=None, output_dir="results"):
+def analyze_changes(img1_path, img2_path, filtered_changes_mask=None, output_dir="results", thermal_data=None):
     """
-    Enhanced analysis with sensitive thresholds and comprehensive risk scoring
+    Enhanced analysis with thermal data integration for accurate risk scoring
     """
     os.makedirs(output_dir, exist_ok=True)
     
-    # Read images
+    # Use thermal data from pipeline if available
+    if thermal_data:
+        print(f"🔥 Using thermal pipeline data for accurate risk assessment...")
+        change_percentage = thermal_data.get('change_percentage', 0)
+        avg_thermal_intensity = thermal_data.get('avg_thermal_intensity', 0)
+        max_thermal_intensity = thermal_data.get('max_thermal_intensity', 0)
+        critical_pixels = thermal_data.get('critical_change_pixels', 0)
+        major_pixels = thermal_data.get('major_change_pixels', 0)
+        
+        print(f"🔥 Thermal Analysis: {change_percentage:.2f}% changed, Avg: {avg_thermal_intensity:.1f}, Max: {max_thermal_intensity:.1f}")
+        
+        # Calculate enhanced metrics from thermal data
+        total_change_pixels = critical_pixels + major_pixels
+        if total_change_pixels > 0:
+            severity_ratio = critical_pixels / max(total_change_pixels, 1)
+            print(f"🔥 Change Severity: {severity_ratio:.2f} ({critical_pixels} critical of {total_change_pixels} total)")
+        else:
+            severity_ratio = 0
+    else:
+        # Fallback to basic image analysis
+        img1 = cv2.imread(img1_path, cv2.IMREAD_COLOR)
+        img2 = cv2.imread(img2_path, cv2.IMREAD_COLOR)
+        
+        if img1 is None or img2 is None:
+            return None
+        
+        # Convert to grayscale for analysis
+        gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+        gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+        
+        # Calculate change percentage
+        diff = cv2.absdiff(gray1, gray2)
+        _, thresh = cv2.threshold(diff, 20, 255, cv2.THRESH_BINARY)
+        changed_pixels = np.count_nonzero(thresh)
+        total_pixels = thresh.shape[0] * thresh.shape[1]
+        change_percentage = (changed_pixels / total_pixels) * 100
+        avg_thermal_intensity = np.mean(diff[diff > 20]) if np.any(diff > 20) else 0
+        max_thermal_intensity = np.max(diff)
+        severity_ratio = 0.5  # Default moderate severity
+    
+    # Enhanced SSIM and ORB analysis
     img1 = cv2.imread(img1_path, cv2.IMREAD_COLOR)
     img2 = cv2.imread(img2_path, cv2.IMREAD_COLOR)
     
-    if img1 is None or img2 is None:
-        return None
-    
-    # Convert to grayscale for analysis
     gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
     
-    # SSIM analysis with more sensitive detection
+    # SSIM analysis
     ssim_score, _ = ssim(gray1, gray2, full=True)
     
-    # ORB Feature Matching with more features
-    orb = cv2.ORB_create(nfeatures=1000)  # Increased features for better detection
+    # ORB Feature Matching
+    orb = cv2.ORB_create(nfeatures=1000)
     kp1, des1 = orb.detectAndCompute(gray1, None)
     kp2, des2 = orb.detectAndCompute(gray2, None)
     
@@ -866,15 +921,11 @@ def analyze_changes(img1_path, img2_path, filtered_changes_mask=None, output_dir
     
     orb_score = len(matches)
     
-    # Calculate change percentage
-    diff = cv2.absdiff(gray1, gray2)
-    _, thresh = cv2.threshold(diff, 20, 255, cv2.THRESH_BINARY)  # Lower threshold
-    changed_pixels = np.count_nonzero(thresh)
-    total_pixels = thresh.shape[0] * thresh.shape[1]
-    change_percentage = (changed_pixels / total_pixels) * 100
-    
-    # Calculate comprehensive risk score
-    risk_analysis = calculate_risk_score(ssim_score, orb_score, change_percentage, filtered_changes_mask)
+    # Calculate comprehensive risk score with thermal data
+    risk_analysis = calculate_risk_score(
+        ssim_score, orb_score, change_percentage, filtered_changes_mask,
+        thermal_intensity=avg_thermal_intensity, severity_ratio=severity_ratio
+    )
     
     # Log results with risk analysis
     log_file = os.path.join(output_dir, "alerts.txt")
