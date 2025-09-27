@@ -1,10 +1,15 @@
-torch==2.0.1
-torchvision==0.15.2
-ultralytics==8.0.196
-opencv-python-headless==4.8.1.78
-scikit-image==0.21.0
-numpy==1.24.4
-matplotlib==3.7.2
+# Core Flask dependencies
 Flask==2.3.3
 Flask-CORS==4.0.0
-Pillow==10.0.1
+numpy==1.21.6
+Pillow==9.5.0
+
+# Computer Vision - lightweight versions
+opencv-python-headless==4.7.1.72
+scikit-image==0.19.3
+matplotlib==3.6.3
+
+# YOLO and PyTorch - CPU versions for faster deployment
+torch==1.13.1+cpu --index-url https://download.pytorch.org/whl/cpu
+torchvision==0.14.1+cpu --index-url https://download.pytorch.org/whl/cpu
+ultralytics==8.0.120
